@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'ru.ravel'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//	implementation 'org.springframework.boot:spring-boot-starter-mail'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+//	implementation 'org.springframework.kafka:spring-kafka'
+//	runtimeOnly 'mysql:mysql-connector-java'
+//	testImplementation 'org.springframework.kafka:spring-kafka-test'
+//	testImplementation 'org.springframework.security:spring-security-test'
+	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+	compile group: 'javax.xml.bind', name: 'jaxb-api'
+	compile group: 'javax.servlet', name: 'jstl'//, version: '1.2'
+//	compile group: 'commons-io', name: 'commons-io', version: '2.4'
+}
+
+test {
+	useJUnitPlatform()
+}
