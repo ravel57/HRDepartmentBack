@@ -24,7 +24,7 @@
 </head>
 <body>
 <div id=q-app></div>
-<script src=js/vendor.82a842ca.js></script>
-<script src=js/app.699b10de.js></script>
+<script src=js/vendor.db433066.js></script>
+<script src=js/app.31991bd9.js></script>
 </body>
 </html>
