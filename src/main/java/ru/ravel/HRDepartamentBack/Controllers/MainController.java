@@ -1,5 +1,6 @@
 package ru.ravel.HRDepartamentBack.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -7,14 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.ravel.HRDepartamentBack.Models.Employee;
+import ru.ravel.HRDepartamentBack.Service.EmployeeServiceInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+public class MainController{
+    @Autowired
+    EmployeeServiceInterface employeeServiceInterface;
 
-public class MainController {
-    @RequestMapping(value = "/**/{path:[^\\\\.]*}", method = RequestMethod.GET)
+    @GetMapping(value = "/**/{path:[^\\\\.]*}")
     public String catchAllPath() {
         return "main";
     }
@@ -25,9 +30,9 @@ public class MainController {
     }
 
     @GetMapping(value = "/api/v1/test/")
-    public ResponseEntity<Object> getGroupResult(@RequestParam("param") String param,
-                                                 @RequestParam("param2") String param2) {
-        return ResponseEntity.status(HttpStatus.OK).body(param+";"+param2);
+    public ResponseEntity<Object> getGroupResult(@RequestParam("param") String param) {
+        List<Employee> employees= employeeServiceInterface.getAllEmployee();
+        return ResponseEntity.status(HttpStatus.OK).body(employees);
     }
 
 }
