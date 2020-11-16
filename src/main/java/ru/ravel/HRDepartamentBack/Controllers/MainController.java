@@ -31,8 +31,8 @@ public class MainController{
 
     @GetMapping(value = "/api/v1/test/")
     public ResponseEntity<Object> getGroupResult(@RequestParam("param") String param) {
-        List<Employee> employees= employeeServiceInterface.getAllEmployee();
-        return ResponseEntity.status(HttpStatus.OK).body(employees);
+//        List<Employee> employees= employeeServiceInterface.getAllEmployee();
+        return ResponseEntity.status(HttpStatus.OK).body(employeeServiceInterface.getAllEmployee());
     }
 
 }
