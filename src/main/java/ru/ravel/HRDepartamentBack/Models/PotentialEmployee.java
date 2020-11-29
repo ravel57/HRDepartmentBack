@@ -20,7 +20,6 @@ public class PotentialEmployee {
     public long getIdPotentialEmployee() {
         return idPotentialEmployee;
     }
-
     public void setIdPotentialEmployee(long idPotentialEmployee) {
         this.idPotentialEmployee = idPotentialEmployee;
     }
@@ -28,7 +27,6 @@ public class PotentialEmployee {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -36,7 +34,6 @@ public class PotentialEmployee {
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -44,7 +41,6 @@ public class PotentialEmployee {
     public String getLetter() {
         return letter;
     }
-
     public void setLetter(String letter) {
         this.letter = letter;
     }
@@ -52,7 +48,6 @@ public class PotentialEmployee {
     public long getIdVacancy() {
         return idVacancy;
     }
-
     public void setIdVacancy(long idVacancy) {
         this.idVacancy = idVacancy;
     }

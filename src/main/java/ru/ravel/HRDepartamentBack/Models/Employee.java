@@ -11,6 +11,7 @@ public class Employee {
     private long idProject;
     private String roleEmployee;
     private Date dateOfEmployment;
+
     public Employee() {
     }
 
@@ -26,7 +27,6 @@ public class Employee {
     public long getIdEmloyee() {
         return idEmloyee;
     }
-
     public void setIdEmloyee(long idEmloyee) {
         this.idEmloyee = idEmloyee;
     }
@@ -34,7 +34,6 @@ public class Employee {
     public String getNameEmployee() {
         return nameEmployee;
     }
-
     public void setNameEmployee(String nameEmployee) {
         this.nameEmployee = nameEmployee;
     }
@@ -42,7 +41,6 @@ public class Employee {
     public String getCityEmployee() {
         return cityEmployee;
     }
-
     public void setCityEmployee(String cityEmployee) {
         this.cityEmployee = cityEmployee;
     }
@@ -50,7 +48,6 @@ public class Employee {
     public long getIdProject() {
         return idProject;
     }
-
     public void setIdProject(long idProject) {
         this.idProject = idProject;
     }
@@ -58,7 +55,6 @@ public class Employee {
     public String getRoleEmployee() {
         return roleEmployee;
     }
-
     public void setRoleEmployee(String roleEmployee) {
         this.roleEmployee = roleEmployee;
     }
@@ -66,7 +62,6 @@ public class Employee {
     public Date getDateOfEmployment() {
         return dateOfEmployment;
     }
-
     public void setDateOfEmployment(Date dateOfEmployment) {
         this.dateOfEmployment = dateOfEmployment;
     }

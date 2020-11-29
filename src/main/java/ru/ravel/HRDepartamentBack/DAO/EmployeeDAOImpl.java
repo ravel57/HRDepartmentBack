@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAOInterface {
 
-    private final
-    JdbcTemplate jdbcTemplate;
+    private final  JdbcTemplate jdbcTemplate;
 
     public EmployeeDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

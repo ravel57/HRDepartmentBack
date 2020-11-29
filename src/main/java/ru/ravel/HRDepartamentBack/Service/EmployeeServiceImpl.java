@@ -7,7 +7,8 @@ import ru.ravel.HRDepartamentBack.Models.Employee;
 import java.util.List;
 
 @Service
-public class EmployeeServiceImpl implements  EmployeeServiceInterface{
+public class EmployeeServiceImpl implements EmployeeServiceInterface {
+
     private final EmployeeDAOInterface employeeDAOInterface;
 
     public EmployeeServiceImpl(EmployeeDAOInterface employeeDAOInterface) {
