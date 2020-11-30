@@ -13,6 +13,10 @@ repositories {
 	mavenCentral()
 }
 
+war {
+	enabled = true
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
@@ -20,12 +24,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 //	implementation 'org.springframework.boot:spring-boot-starter-mail'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.3.1.RELEASE'
 //	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 //	implementation 'org.springframework.kafka:spring-kafka'
 	runtimeOnly 'mysql:mysql-connector-java'
 //	testImplementation 'org.springframework.kafka:spring-kafka-test'
-//	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
 	compile group: 'javax.xml.bind', name: 'jaxb-api'
 	compile group: 'javax.servlet', name: 'jstl'//, version: '1.2'

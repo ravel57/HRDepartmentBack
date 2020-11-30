@@ -1,4 +1,4 @@
-package ru.ravel.HRDepartamentBack.Service;
+package ru.ravel.HRDepartamentBack.Service.Interfaces;
 
 import ru.ravel.HRDepartamentBack.Models.Employee;
 
