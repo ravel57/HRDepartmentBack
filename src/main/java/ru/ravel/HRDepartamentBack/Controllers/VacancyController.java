@@ -28,7 +28,7 @@ public class VacancyController {
     }
 
     @PostMapping(value = "/api/v1/vacancy/add")
-    public ResponseEntity<Object> addVacancy (@RequestParam(value = "vacancy") Vacancy vacancy) {
+    public ResponseEntity<Object> addVacancy(@RequestParam(value = "vacancy") Vacancy vacancy) {
         return ResponseEntity.status(HttpStatus.OK).body(vacancies.addVacancy(vacancy));
     }
 

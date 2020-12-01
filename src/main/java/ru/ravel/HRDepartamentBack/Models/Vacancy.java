@@ -10,11 +10,11 @@ public class Vacancy {
     private String jobType;
     private String role;
     private String requirement;
-    private Date openingDate;
+    private String openingDate;
     private long stateId;
     private long projectId;
 
-    public Vacancy(long id, String city, String category, String jobType, String role, String requirement, Date openingDate, long stateId, long projectId) {
+    public Vacancy(long id, String city, String category, String jobType, String role, String requirement, String openingDate, long stateId, long projectId) {
         this.id = id;
         this.city = city;
         this.category = category;
@@ -77,11 +77,11 @@ public class Vacancy {
         this.requirement = requirement;
     }
 
-    public Date getOpeningDate() {
+    public String getOpeningDate() {
         return openingDate;
     }
 
-    public void setOpeningDate(Date openingDate) {
+    public void setOpeningDate(String openingDate) {
         this.openingDate = openingDate;
     }
 

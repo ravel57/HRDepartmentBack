@@ -5,6 +5,7 @@ import ru.ravel.HRDepartamentBack.Models.Vacancy;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class VacancyMapper implements RowMapper<Vacancy> {
 
@@ -17,7 +18,7 @@ public class VacancyMapper implements RowMapper<Vacancy> {
         vacancy.setJobType(rs.getString("job_type"));
         vacancy.setRole(rs.getString("role"));
         vacancy.setRequirement(rs.getString("requirements"));
-        vacancy.setOpeningDate(rs.getDate("opening_date"));
+        vacancy.setOpeningDate(new SimpleDateFormat("dd MMM yyyy").format(rs.getDate("opening_date")));
         vacancy.setStateId(rs.getLong("state_id"));
         vacancy.setProjectId(rs.getLong("project_id"));
         return vacancy;
