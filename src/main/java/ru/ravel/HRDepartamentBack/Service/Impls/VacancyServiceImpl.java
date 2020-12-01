@@ -33,7 +33,12 @@ public class VacancyServiceImpl implements VacancyServiceInterface {
     }
 
     @Override
-    public void hideVacancy(long vacancyId) {
-        vacancyDAOInterface.hideVacancy(vacancyId);
+    public void hideVacancyById(long vacancyId) {
+        vacancyDAOInterface.hideVacancyById(vacancyId);
+    }
+
+    @Override
+    public Vacancy addVacancy(Vacancy vacancy) {
+        return vacancyDAOInterface.addVacancy(vacancy);
     }
 }

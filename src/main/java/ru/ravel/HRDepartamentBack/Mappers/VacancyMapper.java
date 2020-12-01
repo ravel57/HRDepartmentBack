@@ -11,15 +11,15 @@ public class VacancyMapper implements RowMapper<Vacancy> {
     @Override
     public Vacancy mapRow(ResultSet rs, int rowNum) throws SQLException {
         Vacancy vacancy = new Vacancy();
-        vacancy.setIdVacancy(rs.getLong("idVacancy"));
+        vacancy.setId(rs.getLong("id"));
         vacancy.setCity(rs.getString("city"));
         vacancy.setCategory(rs.getString("category"));
-        vacancy.setJobType(rs.getString("jobType"));
+        vacancy.setJobType(rs.getString("job_type"));
         vacancy.setRole(rs.getString("role"));
         vacancy.setRequirement(rs.getString("requirements"));
-        vacancy.setOpeningDate(rs.getDate("openingDate"));
-        vacancy.setState(rs.getLong("state_id"));
-        vacancy.setIdProject(rs.getLong("idProject"));
+        vacancy.setOpeningDate(rs.getDate("opening_date"));
+        vacancy.setStateId(rs.getLong("state_id"));
+        vacancy.setProjectId(rs.getLong("project_id"));
         return vacancy;
     }
 }

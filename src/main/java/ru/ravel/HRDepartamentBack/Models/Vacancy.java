@@ -4,41 +4,43 @@ import java.util.Date;
 
 public class Vacancy {
 
-    private long idVacancy;
+    private long id;
     private String city;
     private String category;
     private String jobType;
     private String role;
     private String requirement;
     private Date openingDate;
-    private long state;
-    private long idProject;
+    private long stateId;
+    private long projectId;
 
-    public Vacancy(long idVacancy, String city, String category, String jobType, String role, String requirement, Date openingDate, long state, long idProject) {
-        this.idVacancy = idVacancy;
+    public Vacancy(long id, String city, String category, String jobType, String role, String requirement, Date openingDate, long stateId, long projectId) {
+        this.id = id;
         this.city = city;
         this.category = category;
         this.jobType = jobType;
         this.role = role;
         this.requirement = requirement;
         this.openingDate = openingDate;
-        this.state = state;
-        this.idProject = idProject;
+        this.stateId = stateId;
+        this.projectId = projectId;
     }
 
     public Vacancy() {
     }
 
-    public long getIdVacancy() {
-        return idVacancy;
+    public long getId() {
+        return id;
     }
-    public void setIdVacancy(long idVacancy) {
-        this.idVacancy = idVacancy;
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -46,6 +48,7 @@ public class Vacancy {
     public String getCategory() {
         return category;
     }
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -53,6 +56,7 @@ public class Vacancy {
     public String getJobType() {
         return jobType;
     }
+
     public void setJobType(String jobType) {
         this.jobType = jobType;
     }
@@ -60,6 +64,7 @@ public class Vacancy {
     public String getRole() {
         return role;
     }
+
     public void setRole(String role) {
         this.role = role;
     }
@@ -67,6 +72,7 @@ public class Vacancy {
     public String getRequirement() {
         return requirement;
     }
+
     public void setRequirement(String requirement) {
         this.requirement = requirement;
     }
@@ -74,22 +80,24 @@ public class Vacancy {
     public Date getOpeningDate() {
         return openingDate;
     }
+
     public void setOpeningDate(Date openingDate) {
         this.openingDate = openingDate;
     }
 
-    public long getState() {
-        return state;
-    }
-    public void setState(long state) {
-        this.state = state;
+    public long getStateId() {
+        return stateId;
     }
 
-    public long getIdProject() {
-        return idProject;
+    public void setStateId(long stateId) {
+        this.stateId = stateId;
     }
 
-    public void setIdProject(long idProject) {
-        this.idProject = idProject;
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 }

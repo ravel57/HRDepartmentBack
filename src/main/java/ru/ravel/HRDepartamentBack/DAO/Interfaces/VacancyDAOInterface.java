@@ -8,6 +8,8 @@ public interface VacancyDAOInterface {
     List<Vacancy> getAllVacancy();
     List<Vacancy> getActualVacancy();
     Vacancy addPhoneNumberOnVacancy(long vacancyId, String phoneNumber);
-    void hideVacancy(long vacancyId);
+    void hideVacancyById(long vacancyId);
+    Vacancy addVacancy(Vacancy vacancy);
 //    public boolean checkVacancyActuality(long vacancyId);
+
 }
