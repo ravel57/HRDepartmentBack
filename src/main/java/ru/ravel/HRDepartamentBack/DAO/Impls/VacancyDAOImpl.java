@@ -36,7 +36,7 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
                         "VALUES (?, ?);",
                 vacancyId, phoneNumber);
         return jdbcTemplate.queryForObject(
-                "select * from vacancy where idVacancy = ? and state_id > 0",
+                "select * from vacancy where id = ? and state_id > 0",
                 new Object[]{vacancyId},
                 new VacancyMapper()
         );
@@ -55,7 +55,7 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
         try {
             jdbcTemplate.update(
                     "INSERT INTO vacancy (city, category, job_type, role, requirements," +
-                            "opening_date, state_id, project_id,)" +
+                            "opening_date, state_id, project_id) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ",
                     vacancy.getCity(), vacancy.getCategory(),
                     vacancy.getJobType(), vacancy.getRole(),

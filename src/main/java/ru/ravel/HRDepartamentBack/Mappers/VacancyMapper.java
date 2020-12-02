@@ -1,5 +1,7 @@
 package ru.ravel.HRDepartamentBack.Mappers;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.jdbc.core.RowMapper;
 import ru.ravel.HRDepartamentBack.Models.Vacancy;
 
@@ -23,4 +25,11 @@ public class VacancyMapper implements RowMapper<Vacancy> {
         vacancy.setProjectId(rs.getLong("project_id"));
         return vacancy;
     }
+
+    public static Vacancy mapJSON(String vacancyJSON){
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        return gson.fromJson(vacancyJSON, Vacancy.class);
+    }
+
 }

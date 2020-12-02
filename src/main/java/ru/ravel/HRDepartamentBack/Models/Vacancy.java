@@ -32,7 +32,6 @@ public class Vacancy {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -40,7 +39,6 @@ public class Vacancy {
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -48,7 +46,6 @@ public class Vacancy {
     public String getCategory() {
         return category;
     }
-
     public void setCategory(String category) {
         this.category = category;
     }
@@ -56,7 +53,6 @@ public class Vacancy {
     public String getJobType() {
         return jobType;
     }
-
     public void setJobType(String jobType) {
         this.jobType = jobType;
     }
@@ -64,7 +60,6 @@ public class Vacancy {
     public String getRole() {
         return role;
     }
-
     public void setRole(String role) {
         this.role = role;
     }
@@ -72,7 +67,6 @@ public class Vacancy {
     public String getRequirement() {
         return requirement;
     }
-
     public void setRequirement(String requirement) {
         this.requirement = requirement;
     }
@@ -80,7 +74,6 @@ public class Vacancy {
     public String getOpeningDate() {
         return openingDate;
     }
-
     public void setOpeningDate(String openingDate) {
         this.openingDate = openingDate;
     }
@@ -88,7 +81,6 @@ public class Vacancy {
     public long getStateId() {
         return stateId;
     }
-
     public void setStateId(long stateId) {
         this.stateId = stateId;
     }
@@ -96,7 +88,6 @@ public class Vacancy {
     public long getProjectId() {
         return projectId;
     }
-
     public void setProjectId(long projectId) {
         this.projectId = projectId;
     }
