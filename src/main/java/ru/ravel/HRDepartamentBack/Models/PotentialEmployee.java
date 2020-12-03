@@ -1,27 +1,21 @@
 package ru.ravel.HRDepartamentBack.Models;
 
 public class PotentialEmployee {
-    private long idPotentialEmployee;
+//    private long vacancyId;
     private String name;
+    private String phoneNumber;
     private String city;
     private String letter;
-    private long idVacancy;
 
-    public PotentialEmployee() { }
+    public PotentialEmployee() {
+    }
 
-    public PotentialEmployee(long idPotentialEmployee, String name, String city, String letter, long idVacancy) {
-        this.idPotentialEmployee = idPotentialEmployee;
+    public PotentialEmployee(String name, String phoneNumber, String city, String letter) {
+//        this.vacancyId = vacancyId;
         this.name = name;
+        this.phoneNumber = phoneNumber;
         this.city = city;
         this.letter = letter;
-        this.idVacancy = idVacancy;
-    }
-
-    public long getIdPotentialEmployee() {
-        return idPotentialEmployee;
-    }
-    public void setIdPotentialEmployee(long idPotentialEmployee) {
-        this.idPotentialEmployee = idPotentialEmployee;
     }
 
     public String getName() {
@@ -29,6 +23,13 @@ public class PotentialEmployee {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getCity() {
@@ -45,11 +46,5 @@ public class PotentialEmployee {
         this.letter = letter;
     }
 
-    public long getIdVacancy() {
-        return idVacancy;
-    }
-    public void setIdVacancy(long idVacancy) {
-        this.idVacancy = idVacancy;
-    }
 
 }

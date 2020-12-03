@@ -2,6 +2,7 @@ package ru.ravel.HRDepartamentBack.Service.Impls;
 
 import org.springframework.stereotype.Service;
 import ru.ravel.HRDepartamentBack.DAO.Interfaces.VacancyDAOInterface;
+import ru.ravel.HRDepartamentBack.Models.PotentialEmployee;
 import ru.ravel.HRDepartamentBack.Models.Vacancy;
 import ru.ravel.HRDepartamentBack.Service.Interfaces.VacancyServiceInterface;
 
@@ -19,18 +20,24 @@ public class VacancyServiceImpl implements VacancyServiceInterface {
 
     @Override
     public List<Vacancy> getAllVacancy() {
-        return vacancyDAOInterface.getAllVacancy();
+        return vacancyDAOInterface.getAllVacancies();
     }
 
     @Override
     public List<Vacancy> getActualVacancy() {
-        return vacancyDAOInterface.getActualVacancy();
+        return vacancyDAOInterface.getActualVacancies();
     }
 
     @Override
-    public Vacancy addPhoneNumberOnVacancy(long vacancyId, String phoneNumber) {
-        return vacancyDAOInterface.addPhoneNumberOnVacancy(vacancyId, phoneNumber);
+    public List<PotentialEmployee> getRespondedOnVacancy(long vacancyId) {
+        return vacancyDAOInterface.getRespondedOnVacancy(vacancyId);
     }
+
+    @Override
+    public Vacancy applyForVacancy(long vacancyId, PotentialEmployee potentialEmployee) {
+        return vacancyDAOInterface.applyForVacancy(vacancyId, potentialEmployee);
+    }
+
 
     @Override
     public void hideVacancyById(long vacancyId) {
@@ -40,5 +47,10 @@ public class VacancyServiceImpl implements VacancyServiceInterface {
     @Override
     public Vacancy addVacancy(Vacancy vacancy) {
         return vacancyDAOInterface.addVacancy(vacancy);
+    }
+
+    @Override
+    public Vacancy editVacancy(Vacancy vacancy) {
+        return vacancyDAOInterface.editVacancy(vacancy);
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.ravel.HRDepartamentBack.Models.UserDTO;
+import ru.ravel.HRDepartamentBack.Models.systemUserDTO;
 import ru.ravel.HRDepartamentBack.Models.UserRoleEnum;
 import ru.ravel.HRDepartamentBack.Service.Interfaces.UserServiceInterface;
 
@@ -37,7 +37,7 @@ public class AuthController {
         Authentication auth = new UsernamePasswordAuthenticationToken(login, passwordEncoder.encode(password), roles);
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-        UserDTO authUser = user.authorizeUser(login, password);
+        systemUserDTO authUser = user.authorizeUser(login, password);
 
         if (authUser != null)
             return ResponseEntity.status(HttpStatus.OK).body(authUser);
