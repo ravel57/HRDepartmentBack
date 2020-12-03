@@ -7,11 +7,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ravel.HRDepartamentBack.Mappers.PotentialEmployeeMapper;
 import ru.ravel.HRDepartamentBack.Mappers.VacancyMapper;
-import ru.ravel.HRDepartamentBack.Models.PotentialEmployee;
-import ru.ravel.HRDepartamentBack.Models.Vacancy;
 import ru.ravel.HRDepartamentBack.Service.Interfaces.VacancyServiceInterface;
 
-import java.util.List;
+//todo 2 страница для авторезированных пользователей
+//todo отдельный контейнер центральной части
+//todo по-умолчанию закрытые карточки
+//todo описание в заголовке карточки
+//todo цвета кнопок
+//todo кнопка входа на ПК
+//todo пофиксить даты
+//todo не опускать вниз после редактирования (мб помечать как-нибудь)
+//todo пофиксить даты
+//todo не отображается имя в обозревателе
+
 
 @RestController
 public class VacancyController {
@@ -43,13 +51,14 @@ public class VacancyController {
         return ResponseEntity.status(HttpStatus.OK).body(vacancies.addVacancy(VacancyMapper.mapJSON(vacancyJSON)));
     }
 
+    //todo мб через патч
     //@PatchMapping(value = "/api/v1/vacancy")
     @PostMapping(value = "/api/v1/vacancy/edit")
     public ResponseEntity<Object> updateVacancy(@RequestParam("vacancy") String vacancyJSON) {
         return ResponseEntity.status(HttpStatus.OK).body(vacancies.editVacancy(VacancyMapper.mapJSON(vacancyJSON)));
     }
 
-    //проверку на наличие
+    //todo проверку на наличие
     @DeleteMapping(value = "/api/v1/vacancy/{vacancyId}")
     public ResponseEntity hideVacancyById(@PathVariable Long vacancyId) {
         vacancies.hideVacancyById(vacancyId);
@@ -57,3 +66,6 @@ public class VacancyController {
     }
 
 }
+//todo сервис переноса на сервер
+//todo id на связующие таблицы в БД
+//todo docker

@@ -108,12 +108,8 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
                     "UPDATE vacancy\n" +
                         "SET city = ?, category = ?, job_type = ?, role = ?, requirements = ?\n" +
                         "where vacancy.id = ?;\n",
-                    vacancy.getCity(),
-                    vacancy.getCategory(),
-                    vacancy.getJobType(),
-                    vacancy.getRole(),
-                    vacancy.getRequirement(),
-                    vacancy.getId()
+                    vacancy.getCity(), vacancy.getCategory(), vacancy.getJobType(),
+                    vacancy.getRole(), vacancy.getRequirement(), vacancy.getId()
             );
             return jdbcTemplate.queryForObject(
                     "select * from vacancy where id = ?;",
