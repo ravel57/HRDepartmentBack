@@ -31,7 +31,7 @@ public class VacancyController {
 
     @PostMapping(value = "/api/v1/vacancy")
     public ResponseEntity<Object> applyForVacancy(@RequestParam("idVacancy") long vacancyId,
-                                                  @RequestParam("vacancy") String potentialEmployeeJSON) {
+                                                  @RequestParam("potentialEmployee") String potentialEmployeeJSON) {
         return ResponseEntity.status(HttpStatus.OK).body(vacancies.applyForVacancy(
                 vacancyId,
                 PotentialEmployeeMapper.mapJSON(potentialEmployeeJSON))
