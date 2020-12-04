@@ -13,9 +13,9 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.ravel.HRDepartamentBack.Models.systemUserDTO;
+import ru.ravel.HRDepartamentBack.Models.User;
 import ru.ravel.HRDepartamentBack.Models.UserRoleEnum;
-import ru.ravel.HRDepartamentBack.Service.Interfaces.UserServiceInterface;
+import ru.ravel.HRDepartamentBack.Service.Interfaces.systemUserDTOServiceInterface;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,19 +25,19 @@ import java.util.Set;
 @Controller
 public class AuthController {
     @Autowired
-    UserServiceInterface user;
+    systemUserDTOServiceInterface user;
 
 
     @PostMapping(value = "/api/v1/auth")
     public ResponseEntity<Object> auth(@RequestParam("login") String login, @RequestParam("password") String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Set<GrantedAuthority> roles = new HashSet<>();
-
+        //todo !!!!!!!!!!
+        User authUser = user.authorizeUser(login, password);
+        authUser.getRole();
         roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
         Authentication auth = new UsernamePasswordAuthenticationToken(login, passwordEncoder.encode(password), roles);
         SecurityContextHolder.getContext().setAuthentication(auth);
-
-        systemUserDTO authUser = user.authorizeUser(login, password);
 
         if (authUser != null)
             return ResponseEntity.status(HttpStatus.OK).body(authUser);

@@ -1,8 +1,8 @@
 package ru.ravel.HRDepartamentBack.DAO.Interfaces;
 
-import ru.ravel.HRDepartamentBack.Models.systemUserDTO;
+import ru.ravel.HRDepartamentBack.Models.User;
 
 public interface UserDAOInterface {
 //    List<User> getAllUser();
-    systemUserDTO getUserByLoginAndPassword(String login, String password);
+    User getUserByLoginAndPasswordOrReturnNull(String login, String password);
 }

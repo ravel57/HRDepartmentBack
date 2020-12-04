@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.ravel.HRDepartamentBack.DAO.Interfaces.UserDAOInterface;
 import ru.ravel.HRDepartamentBack.Mappers.UserMapper;
-import ru.ravel.HRDepartamentBack.Models.systemUserDTO;
+import ru.ravel.HRDepartamentBack.Models.User;
 
 @Repository
 public class UserDAOImpl implements UserDAOInterface {
@@ -20,18 +20,19 @@ public class UserDAOImpl implements UserDAOInterface {
 //        return jdbcTemplate.query("select * from user", new UserMapper());
 //    }
 
-    public systemUserDTO getUserByLoginAndPassword(String login, String password) {
-        systemUserDTO systemUserDTO;
+    public User getUserByLoginAndPasswordOrReturnNull(String login, String password) {
+        User user;
         try {
-            systemUserDTO = jdbcTemplate.queryForObject(
-                    "SELECT system_users.id, system_users.login, system_users.post_id, role.role_name\n" +
-                            "FROM `hr_department`.system_users\n" +
-                            "         join `hr_department`.role on system_users.role_id = role.id\n" +
-                            "where login like ? and password like ?;",
+            user = jdbcTemplate.queryForObject(
+                    "SELECT users.id, employees.name, users.login, roles.role_name " +
+                            "FROM `hr_department`.users " +
+                            "join `hr_department`.roles on users.role_id = roles.id " +
+                            "join `hr_department`.employees on employees.id = users.id " +
+                            "where login like ? and password like ?",
                     new Object[]{login, password},
                     new UserMapper()
             );
-            return systemUserDTO;
+            return user;
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

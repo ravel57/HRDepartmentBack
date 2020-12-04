@@ -1,20 +1,19 @@
 package ru.ravel.HRDepartamentBack.Models;
 
-public class systemUserDTO {
+public class User {
 
     private long idUser;
+    private String name;
     private String login;
-    private String post;
     private String role;
 
-    public systemUserDTO() {
+    public User() {
     }
 
-    public systemUserDTO(long idUser, String login, String post, String role) {
+    public User(long idUser, String login, String roleId) {
         this.idUser = idUser;
         this.login = login;
-        this.post = post;
-        this.role = role;
+        this.role = roleId;
     }
 
 
@@ -25,18 +24,19 @@ public class systemUserDTO {
         this.idUser = idUser;
     }
 
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
     public String getLogin() {
         return login;
     }
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPost() {
-        return post;
-    }
-    public void setPost(String post) {
-        this.post = post;
     }
 
     public String getRole() {
@@ -46,5 +46,3 @@ public class systemUserDTO {
         this.role = role;
     }
 }
-
-

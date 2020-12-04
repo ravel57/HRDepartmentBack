@@ -5,44 +5,47 @@ import java.util.Date;
 
 public class Employee {
 
-    private long idEmloyee;
-    private String nameEmployee;
-    private String cityEmployee;
+    private long id;
+    private String name;
+    private String city;
     private long idProject;
-    private String roleEmployee;
+    private String role;
     private Date dateOfEmployment;
+
+
+    private long salary;
 
     public Employee() {
     }
 
-    public Employee(long idEmloyee, String nameEmployee, String cityEmployee, long idProject, String roleEmployee, Date dateOfEmployment) {
-        this.idEmloyee = idEmloyee;
-        this.nameEmployee = nameEmployee;
-        this.cityEmployee = cityEmployee;
+    public Employee(long id, String name, String city, long idProject, String role, Date dateOfEmployment) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
         this.idProject = idProject;
-        this.roleEmployee = roleEmployee;
+        this.role = role;
         this.dateOfEmployment = dateOfEmployment;
     }
 
-    public long getIdEmloyee() {
-        return idEmloyee;
+    public long getId() {
+        return id;
     }
-    public void setIdEmloyee(long idEmloyee) {
-        this.idEmloyee = idEmloyee;
-    }
-
-    public String getNameEmployee() {
-        return nameEmployee;
-    }
-    public void setNameEmployee(String nameEmployee) {
-        this.nameEmployee = nameEmployee;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getCityEmployee() {
-        return cityEmployee;
+    public String getName() {
+        return name;
     }
-    public void setCityEmployee(String cityEmployee) {
-        this.cityEmployee = cityEmployee;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public long getIdProject() {
@@ -52,11 +55,11 @@ public class Employee {
         this.idProject = idProject;
     }
 
-    public String getRoleEmployee() {
-        return roleEmployee;
+    public String getRole() {
+        return role;
     }
-    public void setRoleEmployee(String roleEmployee) {
-        this.roleEmployee = roleEmployee;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Date getDateOfEmployment() {
@@ -66,5 +69,11 @@ public class Employee {
         this.dateOfEmployment = dateOfEmployment;
     }
 
+    public long getSalary() {
+        return salary;
+    }
+    public void setSalary(long salary) {
+        this.salary = salary;
+    }
 
 }

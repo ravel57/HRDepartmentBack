@@ -27,16 +27,16 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
 
     @Override
     public List<Vacancy> getActualVacancies() {
-        return jdbcTemplate.query("select * from vacancy where vacancy.state_id > 0;", new VacancyMapper());
+        return jdbcTemplate.query("select * from vacancies where vacancies.state_id > 0;", new VacancyMapper());
     }
 
     @Override
-    public List<PotentialEmployee> getRespondedOnVacancy(long vacancyId) {
+    public List<PotentialEmployee> getApplicantsForVacancies(long vacancyId) {
         return jdbcTemplate.query(
-                "SELECT name, phone_number, potential_employee.city, letter " +
-                        "FROM hr_department.potential_employee " +
-                        "join vacancy on vacancy.id = potential_employee.vacancy_id " +
-                        "where vacancy.id = ?;",
+                "SELECT name, phone_number, potential_employees.city, letter " +
+                        "FROM hr_department.potential_employees " +
+                        "join vacancies on vacancies.id = potential_employees.vacancy_id " +
+                        "where vacancies.id = ?;",
                 new Object[]{vacancyId},
                 new PotentialEmployeeMapper()
         );
@@ -46,13 +46,13 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
     public Vacancy applyForVacancy(long vacancyId, PotentialEmployee potentialEmployee) {
         try {
             jdbcTemplate.update(
-                    "INSERT INTO potential_employee (vacancy_id, name, phone_number, city, letter) " +
+                    "INSERT INTO potential_employees (vacancy_id, name, phone_number, city, letter) " +
                             "VALUES (?, ?, ?, ?, ?)",
                     vacancyId, potentialEmployee.getName(), potentialEmployee.getPhoneNumber(),
                     potentialEmployee.getCity(), potentialEmployee.getLetter()
             );
             return jdbcTemplate.queryForObject(
-                    "select * from vacancy  where id = ?;",
+                    "select * from vacancies  where id = ?;",
                     new Object[]{vacancyId},
                     new VacancyMapper()
             );
@@ -77,13 +77,13 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
 
     @Override
     public void hideVacancyById(long vacancyId) {
-        jdbcTemplate.update("UPDATE vacancy SET state_id = 0 WHERE id = ?;", vacancyId);
+        jdbcTemplate.update("UPDATE vacancies SET state_id = 0 WHERE id = ?;", vacancyId);
     }
 
     public Vacancy addVacancy(Vacancy vacancy) {
         try {
             jdbcTemplate.update(
-                    "INSERT INTO vacancy (city, category, job_type, role, requirements," +
+                    "INSERT INTO vacancies (city, category, job_type, role, requirements," +
                             "opening_date, state_id, project_id) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ",
                     vacancy.getCity(), vacancy.getCategory(),
@@ -92,7 +92,7 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
                     vacancy.getStateId(), vacancy.getProjectId()
             );
             return jdbcTemplate.queryForObject(
-                    "select * from vacancy " +
+                    "select * from vacancys " +
                             "where id = (select max(id) from vacancy);",
                     new VacancyMapper()
             );
@@ -105,14 +105,14 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
     public Vacancy editVacancy(Vacancy vacancy) {
         try {
             jdbcTemplate.update(
-                    "UPDATE vacancy\n" +
-                        "SET city = ?, category = ?, job_type = ?, role = ?, requirements = ?\n" +
-                        "where vacancy.id = ?;\n",
+                    "UPDATE vacancys " +
+                        "SET city = ?, category = ?, job_type = ?, role = ?, requirements = ? " +
+                        "where vacancys.id = ?; ",
                     vacancy.getCity(), vacancy.getCategory(), vacancy.getJobType(),
                     vacancy.getRole(), vacancy.getRequirement(), vacancy.getId()
             );
             return jdbcTemplate.queryForObject(
-                    "select * from vacancy where id = ?;",
+                    "select * from vacancys where id = ?;",
                     new Object[]{vacancy.getId()},
                     new VacancyMapper()
             );

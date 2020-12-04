@@ -7,18 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ravel.HRDepartamentBack.Mappers.PotentialEmployeeMapper;
 import ru.ravel.HRDepartamentBack.Mappers.VacancyMapper;
+import ru.ravel.HRDepartamentBack.Models.Vacancy;
 import ru.ravel.HRDepartamentBack.Service.Interfaces.VacancyServiceInterface;
-
-//todo 2 страница для авторезированных пользователей
-//todo отдельный контейнер центральной части
-//todo по-умолчанию закрытые карточки
-//todo описание в заголовке карточки
-//todo цвета кнопок
-//todo кнопка входа на ПК
-//todo пофиксить даты
-//todo не опускать вниз после редактирования (мб помечать как-нибудь)
-//todo пофиксить даты
-//todo не отображается имя в обозревателе
 
 
 @RestController
@@ -34,13 +24,13 @@ public class VacancyController {
 
     @GetMapping("/api/v1/vacancy/potentialEmployee/")
     public ResponseEntity<Object> getRespondedOnVacancy(@RequestParam("vacancyId") long vacancyId) {
-        return ResponseEntity.status(HttpStatus.OK).body(vacancies.getRespondedOnVacancy(vacancyId));
+        return ResponseEntity.status(HttpStatus.OK).body(vacancies.getApplicantsForVacancies(vacancyId));
     }
 
     @PostMapping(value = "/api/v1/vacancy")
-    public ResponseEntity<Object> applyForVacancy(@RequestParam("idVacancy") long vacancyId,
-                                                  @RequestParam("potentialEmployee") String potentialEmployeeJSON) {
-        return ResponseEntity.status(HttpStatus.OK).body(vacancies.applyForVacancy(
+    public ResponseEntity<Object> respondForVacancy(@RequestParam("idVacancy") Long vacancyId,
+                                                    @RequestParam("potentialEmployee") String potentialEmployeeJSON) {
+        return ResponseEntity.status(HttpStatus.OK).body(vacancies.applyForVacancy (
                 vacancyId,
                 PotentialEmployeeMapper.mapJSON(potentialEmployeeJSON))
         );
@@ -49,6 +39,16 @@ public class VacancyController {
     @PostMapping(value = "/api/v1/vacancy/add")
     public ResponseEntity<Object> addVacancy(@RequestParam(value = "vacancy") String vacancyJSON) {
         return ResponseEntity.status(HttpStatus.OK).body(vacancies.addVacancy(VacancyMapper.mapJSON(vacancyJSON)));
+    }
+
+    @PostMapping("/api/v1/vacancy/potentialEmployee")
+    public ResponseEntity<Object> acceptForVacancy(@RequestParam("idVacancy") String vacancyJSON,
+                                                   @RequestParam("potentialEmployee") String potentialEmployeeJSON) {
+        vacancies.acceptForVacancyAndCloseVacancy(
+                VacancyMapper.mapJSON(vacancyJSON),
+                PotentialEmployeeMapper.mapJSON(potentialEmployeeJSON)
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     //todo мб через патч
@@ -66,6 +66,3 @@ public class VacancyController {
     }
 
 }
-//todo сервис переноса на сервер
-//todo id на связующие таблицы в БД
-//todo docker

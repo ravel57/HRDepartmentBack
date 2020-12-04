@@ -10,7 +10,7 @@ public interface VacancyDAOInterface {
 
     List<Vacancy> getActualVacancies();
 
-    List<PotentialEmployee> getRespondedOnVacancy(long vacancyId);
+    List<PotentialEmployee> getApplicantsForVacancies(long vacancyId);
 
     Vacancy applyForVacancy(long vacancyId, PotentialEmployee potentialEmployee);
 
