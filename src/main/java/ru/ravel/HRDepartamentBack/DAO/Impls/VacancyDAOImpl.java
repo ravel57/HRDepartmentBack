@@ -9,6 +9,7 @@ import ru.ravel.HRDepartamentBack.Mappers.VacancyMapper;
 import ru.ravel.HRDepartamentBack.Models.PotentialEmployee;
 import ru.ravel.HRDepartamentBack.Models.Vacancy;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -33,7 +34,7 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
     @Override
     public List<PotentialEmployee> getApplicantsForVacancies(long vacancyId) {
         return jdbcTemplate.query(
-                "SELECT name, phone_number, potential_employees.city, letter " +
+                "SELECT potential_employees.id, name, phone_number, potential_employees.city, letter " +
                         "FROM hr_department.potential_employees " +
                         "join vacancies on vacancies.id = potential_employees.vacancy_id " +
                         "where vacancies.id = ?;",
@@ -88,12 +89,12 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ",
                     vacancy.getCity(), vacancy.getCategory(),
                     vacancy.getJobType(), vacancy.getRole(),
-                    vacancy.getRequirement(), vacancy.getOpeningDate(),
+                    vacancy.getRequirement(), LocalDateTime.now(),
                     vacancy.getStateId(), vacancy.getProjectId()
             );
             return jdbcTemplate.queryForObject(
-                    "select * from vacancys " +
-                            "where id = (select max(id) from vacancy);",
+                    "select * from vacancies " +
+                            "where id = (select max(id) from vacancies);",
                     new VacancyMapper()
             );
         } catch (DataAccessException e) {
@@ -105,14 +106,14 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
     public Vacancy editVacancy(Vacancy vacancy) {
         try {
             jdbcTemplate.update(
-                    "UPDATE vacancys " +
-                        "SET city = ?, category = ?, job_type = ?, role = ?, requirements = ? " +
-                        "where vacancys.id = ?; ",
+                    "UPDATE vacancies " +
+                        "SET city = ?, category = ?, job_type = ?, role = ?," +
+                            " requirements = ? where vacancies.id = ?; ",
                     vacancy.getCity(), vacancy.getCategory(), vacancy.getJobType(),
                     vacancy.getRole(), vacancy.getRequirement(), vacancy.getId()
             );
             return jdbcTemplate.queryForObject(
-                    "select * from vacancys where id = ?;",
+                    "select * from vacancies where id = ?;",
                     new Object[]{vacancy.getId()},
                     new VacancyMapper()
             );

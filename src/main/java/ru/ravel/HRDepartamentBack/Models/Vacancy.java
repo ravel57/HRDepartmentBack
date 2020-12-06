@@ -1,7 +1,5 @@
 package ru.ravel.HRDepartamentBack.Models;
 
-import java.util.Date;
-
 public class Vacancy {
 
     private long id;
@@ -13,8 +11,11 @@ public class Vacancy {
     private String openingDate;
     private long stateId;
     private long projectId;
+    private long salary;
 
-    public Vacancy(long id, String city, String category, String jobType, String role, String requirement, String openingDate, long stateId, long projectId) {
+
+    public Vacancy(long id, String city, String category, String jobType, String role, String requirement,
+                   String openingDate, long stateId, long projectId, long salary) {
         this.id = id;
         this.city = city;
         this.category = category;
@@ -24,6 +25,7 @@ public class Vacancy {
         this.openingDate = openingDate;
         this.stateId = stateId;
         this.projectId = projectId;
+        this.salary = salary;
     }
 
     public Vacancy() {
@@ -91,4 +93,12 @@ public class Vacancy {
     public void setProjectId(long projectId) {
         this.projectId = projectId;
     }
+
+    public long getSalary() {
+        return salary;
+    }
+    public void setSalary(long salary) {
+        this.salary = salary;
+    }
+
 }

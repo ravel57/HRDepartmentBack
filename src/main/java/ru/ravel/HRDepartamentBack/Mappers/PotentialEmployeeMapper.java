@@ -14,7 +14,7 @@ public class PotentialEmployeeMapper implements RowMapper<PotentialEmployee> {
     @Override
     public PotentialEmployee mapRow(ResultSet rs, int rowNum) throws SQLException {
         PotentialEmployee potentialEmployee = new PotentialEmployee();
-//        potentialEmployee.setId(rs.getLong("id"));
+        potentialEmployee.setId(rs.getLong("id"));
 //        potentialEmployee.setVacancyId(rs.getLong("vacancy_id"));
         potentialEmployee.setName(rs.getString("name"));
         potentialEmployee.setPhoneNumber(rs.getString("phone_number"));

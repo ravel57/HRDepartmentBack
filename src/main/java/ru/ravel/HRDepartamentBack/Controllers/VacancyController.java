@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ravel.HRDepartamentBack.Mappers.PotentialEmployeeMapper;
 import ru.ravel.HRDepartamentBack.Mappers.VacancyMapper;
-import ru.ravel.HRDepartamentBack.Models.Vacancy;
 import ru.ravel.HRDepartamentBack.Service.Interfaces.VacancyServiceInterface;
 
 
@@ -42,7 +41,7 @@ public class VacancyController {
     }
 
     @PostMapping("/api/v1/vacancy/potentialEmployee")
-    public ResponseEntity<Object> acceptForVacancy(@RequestParam("idVacancy") String vacancyJSON,
+    public ResponseEntity<Object> acceptForVacancy(@RequestParam("vacancy") String vacancyJSON,
                                                    @RequestParam("potentialEmployee") String potentialEmployeeJSON) {
         vacancies.acceptForVacancyAndCloseVacancy(
                 VacancyMapper.mapJSON(vacancyJSON),

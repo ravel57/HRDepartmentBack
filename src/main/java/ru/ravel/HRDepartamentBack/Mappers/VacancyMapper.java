@@ -23,6 +23,7 @@ public class VacancyMapper implements RowMapper<Vacancy> {
         vacancy.setOpeningDate(new SimpleDateFormat("dd MMM yyyy").format(rs.getDate("opening_date")));
         vacancy.setStateId(rs.getLong("state_id"));
         vacancy.setProjectId(rs.getLong("project_id"));
+        vacancy.setSalary(rs.getLong("salary"));
         return vacancy;
     }
 

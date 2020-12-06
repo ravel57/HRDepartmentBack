@@ -59,7 +59,7 @@ public class VacancyServiceImpl implements VacancyServiceInterface {
 
     @Override
     public void acceptForVacancyAndCloseVacancy(Vacancy vacancy, PotentialEmployee potentialEmployee) {
-        this.hideVacancyById(vacancy.getId());
+//        this.hideVacancyById(vacancy.getId());
         employeeDAOInterface.addEmployee(vacancy, potentialEmployee);
     }
 }

@@ -35,13 +35,13 @@ public class EmployeeServiceImpl implements EmployeeServiceInterface {
     }
 
     @Override
-    public void hideEmployeeById(String employeeIds) {
+    public void deleteEmployeeById(String employeeIds) {
         employeeDAOInterface.hideEmployeeById(employeeIds);
     }
 
-    @Override
-    public void hideEmployeeById(Long employeeId) {
-        employeeDAOInterface.hideEmployeeById(employeeId);
-    }
+//    @Override
+//    public void deleteEmployeeById(Long employeeId) {
+//        employeeDAOInterface.hideEmployeeById(employeeId);
+//    }
 
 }

@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ravel.HRDepartamentBack.Mappers.EmployeeMapper;
-import ru.ravel.HRDepartamentBack.Mappers.VacancyMapper;
 import ru.ravel.HRDepartamentBack.Service.Interfaces.EmployeeServiceInterface;
 
 @RestController
@@ -39,7 +38,7 @@ public class EmployeeController {
 
     @DeleteMapping(value = "/api/v1/employee/{employeeId}")
     public ResponseEntity hideVacancyById(@PathVariable("employeeId") String employeeIds) {
-        employees.hideEmployeeById(employeeIds);
+        employees.deleteEmployeeById(employeeIds);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

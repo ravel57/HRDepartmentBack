@@ -32,17 +32,30 @@ public class AuthController {
     public ResponseEntity<Object> auth(@RequestParam("login") String login, @RequestParam("password") String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Set<GrantedAuthority> roles = new HashSet<>();
-        //todo !!!!!!!!!!
         User authUser = user.authorizeUser(login, password);
-        authUser.getRole();
-        roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
+        if (authUser == null)
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+
+        switch (authUser.getRole()) {
+            case "HR": {
+                roles.add(new SimpleGrantedAuthority(UserRoleEnum.HR.name()));
+                break;
+            }
+            case "MANAGER": {
+                roles.add(new SimpleGrantedAuthority(UserRoleEnum.MANAGER.name()));
+                break;
+            }
+            case "ACCOUNTANT": {
+                roles.add(new SimpleGrantedAuthority(UserRoleEnum.ACCOUNTANT.name()));
+                break;
+            }
+        }
         Authentication auth = new UsernamePasswordAuthenticationToken(login, passwordEncoder.encode(password), roles);
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-        if (authUser != null)
-            return ResponseEntity.status(HttpStatus.OK).body(authUser);
-        else
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+
+        return ResponseEntity.status(HttpStatus.OK).body(authUser);
+
     }
 
     @PostMapping("/api/v1/logout")

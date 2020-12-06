@@ -1,9 +1,11 @@
 package ru.ravel.HRDepartamentBack.Models;
 
 public enum UserRoleEnum {
+    ANONYMOUS,
     ADMIN,
-    USER,
-    ANONYMOUS;
+    HR,
+    MANAGER,
+    ACCOUNTANT;
 
     UserRoleEnum() {}
 }

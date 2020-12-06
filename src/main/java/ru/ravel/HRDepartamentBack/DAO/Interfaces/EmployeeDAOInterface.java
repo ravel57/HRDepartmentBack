@@ -14,5 +14,5 @@ public interface EmployeeDAOInterface {
     Employee editEmployee(Employee employee);
 
     void hideEmployeeById(String employeeId);
-    void hideEmployeeById(Long employeeId);
+//    void hideEmployeeById(Long employeeId);
 }

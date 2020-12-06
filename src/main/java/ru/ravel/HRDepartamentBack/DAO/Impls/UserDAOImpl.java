@@ -25,10 +25,10 @@ public class UserDAOImpl implements UserDAOInterface {
         try {
             user = jdbcTemplate.queryForObject(
                     "SELECT users.id, employees.name, users.login, roles.role_name " +
-                            "FROM `hr_department`.users " +
-                            "join `hr_department`.roles on users.role_id = roles.id " +
-                            "join `hr_department`.employees on employees.id = users.id " +
-                            "where login like ? and password like ?",
+                        "FROM `hr_department`.users " +
+                        "join `hr_department`.roles on users.role_id = roles.id " +
+                        "join `hr_department`.employees on employees.id = users.employee_id " +
+                        "where login like ? and password like ?",
                     new Object[]{login, password},
                     new UserMapper()
             );

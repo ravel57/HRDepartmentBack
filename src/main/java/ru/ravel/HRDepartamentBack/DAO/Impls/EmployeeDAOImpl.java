@@ -10,6 +10,9 @@ import ru.ravel.HRDepartamentBack.Models.Employee;
 import ru.ravel.HRDepartamentBack.Models.PotentialEmployee;
 import ru.ravel.HRDepartamentBack.Models.Vacancy;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
 import java.util.List;
 
 @Repository
@@ -28,12 +31,16 @@ public class EmployeeDAOImpl implements EmployeeDAOInterface {
 
     @Override
     public void addEmployee(Vacancy vacancy, PotentialEmployee potentialEmployee) {
-//            jdbcTemplate.update(
-//                    "INSERT INTO employees (role_id, date, city, name, salary " +
-//                            "VALUES (?, ?, ?, ?, 0)",
-//                    employee.getRole(), employee.getDateOfEmployment(), employee.getDateOfEmployment(),
-//                    potentialEmployee.getCity(), potentialEmployee.getName()
-//            );
+        jdbcTemplate.update(
+                "INSERT INTO employees (name, id_project, role, date, city, salary, phone_number) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?);",
+                potentialEmployee.getName(), vacancy.getProjectId(), vacancy.getRole(), LocalDateTime.now(),
+                potentialEmployee.getCity(), vacancy.getSalary(), potentialEmployee.getPhoneNumber()
+        );
+        jdbcTemplate.update(
+                "delete from potential_employees where id = ?",
+                potentialEmployee.getId()
+        );
         return;
     }
 
@@ -42,7 +49,7 @@ public class EmployeeDAOImpl implements EmployeeDAOInterface {
         try {
             jdbcTemplate.update(
                     "UPDATE employees " +
-                            "SET id_project = ?, role_id = ?, date = ?, city = ?, name = ?, salary = ? " +
+                            "SET id_project = ?, role = ?, date = ?, city = ?, name = ?, salary = ? " +
                             "WHERE id = ?;",
                     employee.getIdProject(), employee.getRole(), employee.getDateOfEmployment(), employee.getCity(),
                     employee.getName(), employee.getSalary(), employee.getId()
@@ -59,11 +66,11 @@ public class EmployeeDAOImpl implements EmployeeDAOInterface {
 
     @Override
     public void hideEmployeeById(String employeeIds) {
-        jdbcTemplate.update("delete from employees where id in ("+employeeIds+")");
+        jdbcTemplate.update("delete from employees where id in (" + employeeIds + ");");
     }
 
-    @Override
-    public void hideEmployeeById(Long employeeId) {
-        jdbcTemplate.update("DELETE FROM employees WHERE id = ?;", employeeId);
-    }
+//    @Override
+//    public void hideEmployeeById(Long employeeId) {
+//        jdbcTemplate.update("DELETE FROM employees WHERE id = ?;", employeeId);
+//    }
 }

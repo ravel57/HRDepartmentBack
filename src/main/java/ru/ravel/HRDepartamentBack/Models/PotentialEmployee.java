@@ -1,20 +1,30 @@
 package ru.ravel.HRDepartamentBack.Models;
 
 public class PotentialEmployee {
+    private long id;
     private String name;
     private String phoneNumber;
     private String city;
     private String letter;
 
+
     public PotentialEmployee() {
     }
 
-    public PotentialEmployee(String name, String phoneNumber, String city, String letter) {
+    public PotentialEmployee(long id, String name, String phoneNumber, String city, String letter) {
 //        this.vacancyId = vacancyId;
+        this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.letter = letter;
+    }
+
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

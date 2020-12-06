@@ -17,10 +17,11 @@ public class EmployeeMapper implements RowMapper<Employee> {
         employee.setId(rs.getLong("id"));
         employee.setName(rs.getString("name"));
         employee.setIdProject(rs.getLong("id_project"));
-        employee.setRole(rs.getString("role_id"));
+        employee.setRole(rs.getString("role"));
         employee.setDateOfEmployment(rs.getDate("date"));
         employee.setCity(rs.getString("city"));
         employee.setSalary(rs.getLong("salary"));
+        employee.setPhoneNumber(rs.getString("phone_number"));
         return employee;
     }
 

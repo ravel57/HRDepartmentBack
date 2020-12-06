@@ -11,20 +11,21 @@ public class Employee {
     private long idProject;
     private String role;
     private Date dateOfEmployment;
-
-
     private long salary;
+    private String phoneNumber;
 
     public Employee() {
     }
 
-    public Employee(long id, String name, String city, long idProject, String role, Date dateOfEmployment) {
+    public Employee(long id, String name, String city, long idProject,
+                    String role, Date dateOfEmployment, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.city = city;
         this.idProject = idProject;
         this.role = role;
         this.dateOfEmployment = dateOfEmployment;
+        this.phoneNumber = phoneNumber;
     }
 
     public long getId() {
@@ -74,6 +75,13 @@ public class Employee {
     }
     public void setSalary(long salary) {
         this.salary = salary;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
 }

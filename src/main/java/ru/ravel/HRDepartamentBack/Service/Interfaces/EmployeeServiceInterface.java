@@ -13,6 +13,6 @@ public interface EmployeeServiceInterface {
 
     Employee editEmployee(Employee employee);
 
-    void hideEmployeeById(String employeeIds);
-    void hideEmployeeById(Long employeeId);
+    void deleteEmployeeById(String employeeIds);
+//    void deleteEmployeeById(Long employeeId);
 }
