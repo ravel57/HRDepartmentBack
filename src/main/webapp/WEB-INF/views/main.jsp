@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>lublu Iluhu :*:*:*:*:*</title>
+    <title>2C</title>
+<%--    <title>lublu Iluhu :*:*:*:*:*</title>--%>
     <meta charset=utf-8>
     <meta name=description content="A Quasar Framework app">
     <meta name=format-detection content="telephone=no">

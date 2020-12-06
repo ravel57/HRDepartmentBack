@@ -1,13 +1,14 @@
 package ru.ravel.HRDepartamentBack.Mappers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import org.springframework.jdbc.core.RowMapper;
 import ru.ravel.HRDepartamentBack.Models.Employee;
 
+import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class EmployeeMapper implements RowMapper<Employee> {
 
@@ -16,9 +17,10 @@ public class EmployeeMapper implements RowMapper<Employee> {
         Employee employee = new Employee();
         employee.setId(rs.getLong("id"));
         employee.setName(rs.getString("name"));
-        employee.setIdProject(rs.getLong("id_project"));
+        employee.setProjectName(rs.getString("project_name"));
+        employee.setProjectId(rs.getLong("project_id"));
         employee.setRole(rs.getString("role"));
-        employee.setDateOfEmployment(rs.getDate("date"));
+        employee.setDateOfEmployment(new SimpleDateFormat("dd MMM yyyy").format(rs.getDate("date")));
         employee.setCity(rs.getString("city"));
         employee.setSalary(rs.getLong("salary"));
         employee.setPhoneNumber(rs.getString("phone_number"));
@@ -26,8 +28,13 @@ public class EmployeeMapper implements RowMapper<Employee> {
     }
 
     public static Employee mapJSON(String employeeJSON) {
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
+        final Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+                    public Date deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
+                        return new Date(jsonElement.getAsJsonPrimitive().getAsLong());
+                    }
+                })
+                .create();
         return gson.fromJson(employeeJSON, Employee.class);
     }
 

@@ -8,21 +8,23 @@ public class Employee {
     private long id;
     private String name;
     private String city;
-    private long idProject;
+    private String projectName;
+    private long projectId;
     private String role;
-    private Date dateOfEmployment;
+    private String dateOfEmployment;
     private long salary;
     private String phoneNumber;
 
     public Employee() {
     }
 
-    public Employee(long id, String name, String city, long idProject,
-                    String role, Date dateOfEmployment, String phoneNumber) {
+    public Employee(long id, String name, String city, String ProjectName, long ProjectId,
+                    String role, String dateOfEmployment, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.city = city;
-        this.idProject = idProject;
+        this.projectName = ProjectName;
+        this.projectId = ProjectId;
         this.role = role;
         this.dateOfEmployment = dateOfEmployment;
         this.phoneNumber = phoneNumber;
@@ -49,11 +51,18 @@ public class Employee {
         this.city = city;
     }
 
-    public long getIdProject() {
-        return idProject;
+    public String getProjectName() {
+        return projectName;
     }
-    public void setIdProject(long idProject) {
-        this.idProject = idProject;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public long getProjectId() {
+        return projectId;
+    }
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 
     public String getRole() {
@@ -63,10 +72,10 @@ public class Employee {
         this.role = role;
     }
 
-    public Date getDateOfEmployment() {
+    public String getDateOfEmployment() {
         return dateOfEmployment;
     }
-    public void setDateOfEmployment(Date dateOfEmployment) {
+    public void setDateOfEmployment(String dateOfEmployment) {
         this.dateOfEmployment = dateOfEmployment;
     }
 

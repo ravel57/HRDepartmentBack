@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-//todo страница для бухгалтера
-//todo страница для руководителя (получать всех, изменять проект)
-//todo страница для hr (получать всех, изменять, удалять, 25 строк)
+//todo руководителя создания ролей
+//todo сопроводительное письмо оьображать
 
 //todo отдельный контейнер центральной части
+//todo проверка на роли
 //todo по-умолчанию закрытые карточки + описание в заголовке карточки
 //todo цвета кнопок
 //todo кнопка входа на ПК
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 //todo кнопка подтверждения действия
 
 //todo сервис переноса на сервер
-//todo id на связующие таблицы в БД
 //todo docker
 
 
@@ -44,7 +43,5 @@ public class MainController {
 //        List<Employee> employees = employee.getAllEmployee();
 //        return ResponseEntity.status(HttpStatus.OK).body(employees);
 //    }
-
-
 
 }

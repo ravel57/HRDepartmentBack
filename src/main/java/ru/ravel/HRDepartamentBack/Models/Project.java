@@ -22,7 +22,6 @@ public class Project {
     public long getIdProject() {
         return idProject;
     }
-
     public void setIdProject(long idProject) {
         this.idProject = idProject;
     }
@@ -30,7 +29,6 @@ public class Project {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -38,7 +36,6 @@ public class Project {
     public Date getBeginningDate() {
         return beginningDate;
     }
-
     public void setBeginningDate(Date beginningDate) {
         this.beginningDate = beginningDate;
     }
@@ -46,7 +43,6 @@ public class Project {
     public double getBudget() {
         return budget;
     }
-
     public void setBudget(double budget) {
         this.budget = budget;
     }
@@ -54,10 +50,8 @@ public class Project {
     public long getIdDirector() {
         return idDirector;
     }
-
     public void setIdDirector(long idDirector) {
         this.idDirector = idDirector;
     }
-
 
 }

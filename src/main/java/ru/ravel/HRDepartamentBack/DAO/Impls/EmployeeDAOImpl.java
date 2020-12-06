@@ -26,13 +26,18 @@ public class EmployeeDAOImpl implements EmployeeDAOInterface {
 
     @Override
     public List<Employee> getAllEmployee() {
-        return jdbcTemplate.query("select * from employees", new EmployeeMapper());
+        return jdbcTemplate.query(
+                "select employees.id, employees.name, employees.project_id, projects.name as project_name," +
+                        " employees.city, employees.date,  employees.role,  employees.salary, employees.phone_number " +
+                        "from employees " +
+                        "left join projects on projects.id = employees.project_id;",
+                new EmployeeMapper());
     }
 
     @Override
     public void addEmployee(Vacancy vacancy, PotentialEmployee potentialEmployee) {
         jdbcTemplate.update(
-                "INSERT INTO employees (name, id_project, role, date, city, salary, phone_number) " +
+                "INSERT INTO employees (name, project_id, role, date, city, salary, phone_number) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?);",
                 potentialEmployee.getName(), vacancy.getProjectId(), vacancy.getRole(), LocalDateTime.now(),
                 potentialEmployee.getCity(), vacancy.getSalary(), potentialEmployee.getPhoneNumber()
@@ -49,13 +54,17 @@ public class EmployeeDAOImpl implements EmployeeDAOInterface {
         try {
             jdbcTemplate.update(
                     "UPDATE employees " +
-                            "SET id_project = ?, role = ?, date = ?, city = ?, name = ?, salary = ? " +
+                            "SET project_id = ?, role = ?, city = ?, name = ?, salary = ?, phone_number =? " +
                             "WHERE id = ?;",
-                    employee.getIdProject(), employee.getRole(), employee.getDateOfEmployment(), employee.getCity(),
-                    employee.getName(), employee.getSalary(), employee.getId()
+                    employee.getProjectId(), employee.getRole(), employee.getCity(), employee.getName(),
+                    employee.getSalary(), employee.getPhoneNumber(), employee.getId()
             );
             return jdbcTemplate.queryForObject(
-                    "select * from employees where id = ?;",
+                    "select employees.id, employees.name, employees.project_id, projects.name as project_name, " +
+                            " employees.role, employees.date, employees.city, employees.salary, employees.phone_number " +
+                            "from employees " +
+                            "left join projects on projects.id = employees.project_id " +
+                            "where employees.id = ?;",
                     new Object[]{employee.getId()},
                     new EmployeeMapper()
             );
