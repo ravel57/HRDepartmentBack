@@ -40,21 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 
-//    @Bean
-//    protected UserDetailsService userDetailsService() {
-//        return new InMemoryUserDetailsManager(
-//                User.builder()
-//                        .username("admin")
-//                        .password(passwordEncoder().encode("chmo"))
-//                        .roles(UserRoleEnum.ADMIN.name())
-//                        .build(),
-//                User.builder()
-//                        .username("huesos")
-//                        .password(passwordEncoder().encode("huesos"))
-//                        .roles(UserRoleEnum.USER.name())
-//                        .build()
-//        );
-//    }
 
     @Bean
     protected PasswordEncoder passwordEncoder() {

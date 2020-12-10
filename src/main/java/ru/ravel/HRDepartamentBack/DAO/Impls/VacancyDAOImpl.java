@@ -28,7 +28,7 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
 
     @Override
     public List<Vacancy> getActualVacancies() {
-        return jdbcTemplate.query("select * from vacancies where vacancies.state_id > 0;", new VacancyMapper());
+        return jdbcTemplate.query("select * from vacancies where vacancies.state > 0;", new VacancyMapper());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
 //                        "VALUES (?, ?);",
 //                vacancyId, phoneNumber);
 //        return jdbcTemplate.queryForObject(
-//                "select * from vacancy where id = ? and state_id > 0",
+//                "select * from vacancy where id = ? and state > 0",
 //                new Object[]{vacancyId},
 //                new VacancyMapper()
 //        );
@@ -78,14 +78,14 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
 
     @Override
     public void hideVacancyById(long vacancyId) {
-        jdbcTemplate.update("UPDATE vacancies SET state_id = 0 WHERE id = ?;", vacancyId);
+        jdbcTemplate.update("UPDATE vacancies SET state = 0 WHERE id = ?;", vacancyId);
     }
 
     public Vacancy addVacancy(Vacancy vacancy) {
         try {
             jdbcTemplate.update(
                     "INSERT INTO vacancies (city, category, job_type, role, requirements," +
-                            "opening_date, state_id, project_id) " +
+                            "opening_date, state, project_id) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ",
                     vacancy.getCity(), vacancy.getCategory(),
                     vacancy.getJobType(), vacancy.getRole(),
@@ -123,7 +123,7 @@ public class VacancyDAOImpl implements VacancyDAOInterface {
     }
 
 //    public boolean checkVacancyActuality(long vacancyId) {
-//        return jdbcTemplate.query("select * from vacancy where state_id > 0 and idVacancy = ?",
+//        return jdbcTemplate.query("select * from vacancy where state > 0 and idVacancy = ?",
 //                vacancyId},
 //                new VacancyMapper()).size() > 0;
 //    }
