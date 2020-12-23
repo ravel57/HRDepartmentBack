@@ -1,6 +1,9 @@
 package ru.ravel.HRDepartamentBack.Controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,14 +25,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Controller
 public class AuthController {
     @Autowired
     systemUserDTOServiceInterface user;
 
+    @Autowired
+    Logger logger;
+
 
     @PostMapping(value = "/api/v1/auth")
     public ResponseEntity<Object> auth(@RequestParam("login") String login, @RequestParam("password") String password) {
+        login = login.trim();
+        password = password.trim();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Set<GrantedAuthority> roles = new HashSet<>();
         User authUser = user.authorizeUser(login, password);
@@ -53,7 +62,7 @@ public class AuthController {
         Authentication auth = new UsernamePasswordAuthenticationToken(login, passwordEncoder.encode(password), roles);
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-
+//        logger.info("");
         return ResponseEntity.status(HttpStatus.OK).body(authUser);
 
     }
@@ -63,5 +72,11 @@ public class AuthController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         SecurityContextLogoutHandler securityContextHolder = new SecurityContextLogoutHandler();
         securityContextHolder.logout(request, response, null);
+        logger.info("");
+    }
+
+    @Bean(name = "LoggerSchedule")
+    public Logger getLoggerSchedule() {
+        return LoggerFactory.getLogger(AuthController.class);
     }
 }
